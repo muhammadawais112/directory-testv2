@@ -1,16 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import EditProfile from "@/app/profile/component/EditProfile";
-import AboutTab from "@/app/profile/component/tabs/about";
-import ChangePassword from "@/app/profile/component/ChangePassword";
 import OwnedBusiness from "@/app/Home/DetailPage/OwnedBusiness";
 import ClaimRequest from "@/app/Home/DetailPage/ClaimRequest";
 import FollowedBusiness from "@/app/Home/DetailPage/FollowedBusiness";
 import AppliedJobs from "@/app/Home/DetailPage/AppliedJobs";
 import EventsActivity from "@/app/Home/DetailPage/EventsActivity";
-import CoverPhoto from "@/app/profile/component/CoverPhoto";
 import { useUserInfo } from "@/app/context/user";
 import { useAgencyInfo } from "@/app/context/agency";
+import EditProfile from "./component/EditProfile";
+import AboutTab from "./component/tabs/about";
+import ChangePassword from "./component/ChangePassword";
+import CoverPhoto from "./component/CoverPhoto";
 
 
 
