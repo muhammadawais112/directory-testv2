@@ -179,7 +179,7 @@ const Index = () => {
   };
   console.log("businessesDebufg", businesses);
   return (
-    <div className="bg-gray-50">
+    <div>
       {loader ? (
         <Loader />
       ) : (
@@ -187,7 +187,7 @@ const Index = () => {
           <section className="py-8">
             {businesses.length > 0 ? (
               <div className="w-[90%] lg:w-[1170px] mx-auto py-[60px]">
-                <h2 className="text-2xl font-bold text-center mb-8 text-black">
+                <h2 className="text-2xl font-bold text-center mb-8">
                   {tagData
                     ? businesses[0]?.business_tags?.find(
                         (tag) => tag.value === tagData?._id
@@ -203,7 +203,7 @@ const Index = () => {
                         onClick={() =>
                           navigate.push(`${middleware}${business.slug}`)
                         }
-                        className="relative mx-auto cursor-pointer !w-[330px] !h-[390px] rounded-xl overflow-hidden shadow-sm border"
+                        className="relative mx-auto cursor-pointer !w-[330px] !h-[390px] rounded-xl overflow-hidden shadow-sm border border-gray-200"
                       >
                         <div className="relative">
                           <Image
@@ -252,7 +252,7 @@ const Index = () => {
                         </div>
 
                         <div className=" absolute bottom-2 w-full px-4 pt-2">
-                          <div className="border-t  pt-2 flex justify-end">
+                          <div className="border-t border-gray-200 pt-2 flex justify-end">
                             <span className="w-8 h-8 flex justify-center items-center cursor-pointer text-black">
                               <FaExternalLinkAlt />
                             </span>

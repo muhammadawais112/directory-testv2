@@ -14,11 +14,6 @@ import CoverPhoto from "./component/CoverPhoto";
 
 
 
-
-
-
-
-
 const Profile = () => {
   const [user,Update] = useUserInfo();
   const [agency] = useAgencyInfo();
