@@ -9,9 +9,9 @@ import sample from "@/app/assets/Home/sample.svg";
 import { CgArrowTopRight } from "react-icons/cg";
 
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+// import { useAgencyInfo } from "../../context/agency";
 import Image from 'next/image';
 import { useAgencyInfo } from '@/app/context/agency';
-
 
 const CustomNextArrow = ({ onClick, theme_content }) => (
   <div
@@ -83,7 +83,7 @@ const BusinessesByCities = ({ bussinessTags }) => {
       top: 0,
       behavior: "smooth",
     });
-    navigation(`/filter-tags/${tag?.slug}`);
+    navigation.push(`/filter-tags/${tag?.slug}`);
   };
 
   return (
@@ -98,7 +98,7 @@ const BusinessesByCities = ({ bussinessTags }) => {
             className=" md:mt-0 mt-2 flex items-center space-x-2 font-semibold cursor-pointer text-black"
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
-              navigation("/tags");
+              navigation.push("/tags");
             }}
           >
             See All Tags

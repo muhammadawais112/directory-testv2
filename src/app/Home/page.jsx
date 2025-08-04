@@ -109,7 +109,7 @@ const Home = () => {
                           theme_content?.general?.button_bg || '#00A6A9',
                         color: theme_content?.general?.button_text || 'white'
                       }}
-                      className='p-2 py-3 rounded-md'
+                      className='p-2 py-3 rounded-md cursor-pointer'
                     >
                       Search
                     </button>
@@ -219,7 +219,6 @@ const Home = () => {
             </button>
           )}
         </div>
-
         {themeContentObject?.showMap && agency?.google_api_key ? (
           <div className='flex justify-center space-x-4 mt-4 relative'>
             <div className='relative w-[300px] '>
@@ -245,7 +244,7 @@ const Home = () => {
                     background: theme_content?.general?.button_bg || '#00A6A9',
                     color: theme_content?.general?.button_text || 'white'
                   }}
-                  className='p-2 py-3 rounded-md'
+                  className='p-2 py-3 rounded-md cursor-pointer'
                 >
                   Search
                 </button>
@@ -293,7 +292,6 @@ const Home = () => {
           ''
         )}
       </section>
-
       {businesses.length > 0 && (
         <div className='bg-[#F7F7F7]'>
           <div className='w-[90%] lg:w-[1170px] mx-auto py-[120px]'>
@@ -340,7 +338,7 @@ const Home = () => {
 
       {blogs.length > 0 && (
         <div className='w-[100%] lg:w-[100%] px-[20%] py-[120px] bg-gray-50'>
-          <FromOurBlog blogsData={blogs} />
+          <FromOurBlog blogsData={blogs} middleware={middleware} />
         </div>
       )}
     </div>

@@ -1,8 +1,7 @@
-// import { useAppServices } from "@/app/hook/services";
-import { useEffect, useState } from "react";
-// import { useAgencyInfo } from "../../context/agency";
-import { useAppServices } from "@/app/hook/services";
+"use client";
 import { useAgencyInfo } from "@/app/context/agency";
+import { useAppServices } from "@/app/hook/services";
+import { useEffect, useState } from "react";
 
 const HomeData = () => {
     const AppService = useAppServices();

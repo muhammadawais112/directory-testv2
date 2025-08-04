@@ -22,7 +22,7 @@ const Footer = () => {
   const { agency_id } = useParams()
 
   if (agency_id) {
-    middleware = `/Linkpp/${agency_id}/`
+    middleware = `/app/${agency_id}/`
   }
 
   return (
@@ -159,7 +159,7 @@ const Footer = () => {
                     .replace(/[^a-z0-9\s]/g, "")
                     .replace(/\s+/g, "-")
                     .replace(/-+/g, "-");
-                  navigate(`${middleware}page/${encodeURIComponent(cleanedName)}`)
+                  navigate.push(`${middleware}page/${encodeURIComponent(cleanedName)}`)
                 }
                 }
               >

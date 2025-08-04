@@ -407,7 +407,7 @@ const Header = ({ agency_id }) => {
                       .replace(/[^a-z0-9\s]/g, "")
                       .replace(/\s+/g, "-")
                       .replace(/-+/g, "-");
-                    navigate(`${middleware}pages/${encodeURIComponent(cleanedName)}`);
+                    navigate.push(`${middleware}pages/${encodeURIComponent(cleanedName)}`);
                     setIsOpen(false);
                   }}
                 >

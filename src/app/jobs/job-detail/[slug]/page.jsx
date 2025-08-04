@@ -26,7 +26,7 @@ const JobDetail = () => {
   const [user] = useUserInfo();
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(true);
-  const router = useRouter();
+  const navigate = useRouter();
   const theme_content = agency?.theme_id?.theme_data;
   const { agency_id, slug } = useParams()
   let middleware = `/`
@@ -111,7 +111,7 @@ const JobDetail = () => {
       behavior: "smooth",
     });
 
-    navigate(`${middleware}job-detail/${job?.slug}`);
+    navigate.push(`/jobs/job-detail/${job?.slug}`);
   };
 
   const handleApplyForJob = async (job) => {

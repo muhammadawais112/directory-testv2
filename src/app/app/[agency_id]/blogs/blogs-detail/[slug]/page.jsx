@@ -57,6 +57,8 @@ const BlogDetail = () => {
         src={blog?.image || banner}
         alt="banner"
         className="!w-full h-[500px] object-cover"
+        width={400}
+        height={400}
       />
 
       <div className="pt-16">

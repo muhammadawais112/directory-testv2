@@ -1,9 +1,11 @@
+"use client";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { useAgencyInfo } from "../../../context/agency";
-import { useAppServices, useUploadImage } from "../../../hook/services";
-import Modal from "../../../components/popup";
-import businessImage from "../../../assets/Blogs/main.png";
+import businessImage from "@/app/assets/Blogs/main.png";
+import Modal from "@/app/components/popup";
+import { useAppServices, useUploadImage } from "@/app/hook/services";
+import { useAgencyInfo } from "@/app/context/agency";
+import Image from "next/image";
 
 function ClaimRequest({ user }) {
   const [agency] = useAgencyInfo();
@@ -138,10 +140,12 @@ function ClaimRequest({ user }) {
           >
             <div className="p-6">
               <div>
-                <img
+                <Image
                   src={request?.profile_image || request?.business_ref_id?.profile_image || businessImage}
                   alt="Profile Image"
                   className="w-full h-[300px] object-cover rounded-lg mb-4"
+                  width={500}
+                  height={220}
                 />
               </div>
 

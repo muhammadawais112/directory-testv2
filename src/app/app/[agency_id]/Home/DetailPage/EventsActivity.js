@@ -1,10 +1,10 @@
+"use client";
+import Loader from "@/app/components/loader";
+import { useAgencyInfo } from "@/app/context/agency";
+import { useUserInfo } from "@/app/context/user";
+import { useAppServices } from "@/app/hook/services";
+import { useParams, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useAgencyInfo } from "../../../context/agency";
-import { useAppServices } from "../../../hook/services";
-import { useUserInfo } from "../../../context/user";
-import Loader from "../../../components/loader";
-import Image from "next/image";
 
 const EventsActivity = () => {
   const AppService = useAppServices();
@@ -19,10 +19,9 @@ const EventsActivity = () => {
         query: `account_id=${user?._id}`,
       });
 
-      if (response?.success && Array.isArray(response.eventsResults)) {
+      if (response?.success && Array.isArray(response?.eventsResults)) {
         setEventActivities(response.eventsResults);
       } else {
-        console.error("Failed to fetch event activities:", response?.message);
         setEventActivities([]);
       }
     } catch (error) {
@@ -58,7 +57,7 @@ const EventsActivity = () => {
                   className="border p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white"
                 >
                   {data?.event_id?.image && (
-                    <Image
+                    <img
                       src={data?.event_id?.image}
                       alt={data?.event_id?.event_name || "Event Image"}
                       className="w-full h-48 object-cover rounded-md mb-4"

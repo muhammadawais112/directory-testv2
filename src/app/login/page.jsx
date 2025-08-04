@@ -33,14 +33,14 @@ const SignIn = () => {
     if (response) {
       localforage.setItem("user", { ...response.data });
       Update(response.data);
-      navigate(`${middleware}profile`);
+      navigate.push(`${middleware}profile`);
     } else {
       setErrorMsg("Invalid email or password");
     }
   };
   return (
-    <div className="h-full w-full flex justify-center items-center py-16 bg-white">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="h-full w-full flex justify-center items-center py-16">
+      <div className="p-8 rounded-lg shadow-lg w-full max-w-md">
         <div className="flex items-center justify-center mb-6">
           <img
             alt="Directory logo"

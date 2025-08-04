@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import blogImage from "../../../assets/Blogs/main.png";
 import { useAgencyInfo } from "../../../context/agency";
-import Image from "next/image";
+
 function BusinessEvents({ blogsData }) {
   const [visibleBlogs, setVisibleBlogs] = useState(4);
   const [agency] = useAgencyInfo();
@@ -49,7 +49,7 @@ function BusinessEvents({ blogsData }) {
               className="p-6 bg-white rounded-lg border cursor-pointer border-gray-200 shadow-md light:bg-gray-800 light:border-gray-700"
             >
               <div className="mb-4">
-                <Image
+                <img
                   className="w-full h-48 object-cover rounded-lg"
                   src={blog.image || blogImage}
                   alt="Blog Cover"

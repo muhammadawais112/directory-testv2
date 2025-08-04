@@ -1,23 +1,22 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import banner from '@/app/assets/Home/banner.svg'
-// import { BsSearch } from 'react-icons/bs'
-// import { IoIosArrowDown } from 'react-icons/io'
-// import Services from './HomeComponents/Services'
-// import WhyChooseUs from './HomeComponents/WhyChooseUs'
-// import ListingTypes from './HomeComponents/ListingTypes'
-// import FromOurBlog from '@/app/HomeComponents/FromOurBlog'
-// import Testimonial from './HomeComponents/Testimonial'
-// import FeaturedListings from '@/app/HomeComponents/FeaturedListings copy'
+import { BsSearch } from 'react-icons/bs'
+import { IoIosArrowDown } from 'react-icons/io'
+import Services from './HomeComponents/Services'
+import WhyChooseUs from './HomeComponents/WhyChooseUs'
+import BusinessesByCities from './HomeComponents/BusinessesByCities'
+import ListingTypes from './HomeComponents/ListingTypes'
+import FromOurBlog from './HomeComponents/FromOurBlog'
+import FeaturedListing from './HomeComponents/FeaturedListing/FeaturedListing'
+import Testimonial from './HomeComponents/Testimonial'
+import HomeData from './HomeComponents/Data'
+import FreeListing from './HomeComponents/FreeListing'
+import FeaturedListings from './HomeComponents/FeaturedListings copy'
 import { useRouter, useParams } from 'next/navigation'
 import { useAgencyInfo } from '@/app/context/agency';
-import FreeListing from '@/app/Home/HomeComponents/FreeListing';
-import HomeData from '@/app/Home/HomeComponents/Data';
 import MapContainer from '@/app/components/Map/MapContainer';
-import BusinessesByCities from '@/app/Home/HomeComponents/BusinessesByCities';
-import FromOurBlog from '@/app/Home/HomeComponents/FromOurBlog';
-import FeaturedListing from '@/app/Home/HomeComponents/FeaturedListing/FeaturedListing';
-import FeaturedListings from './HomeComponents/FeaturedListings copy';
+import banner from "../../../assets/Home/banner.svg"
+
 
 const Home = () => {
   const [agency] = useAgencyInfo()
@@ -99,7 +98,7 @@ const Home = () => {
                     <button
                       onClick={() => {
                         if (searchTerm) {
-                          navigate(
+                          navigate.push(
                             `${middleware}filter-listing?search=${encodeURIComponent(
                               searchTerm
                             )}`
@@ -134,7 +133,7 @@ const Home = () => {
                         .map((biz, index) => (
                           <li
                             onClick={() =>
-                              navigate(`${middleware}detail-page/${biz?.slug}`)
+                              navigate.push(`${middleware}detail-page/${biz?.slug}`)
                             }
                             key={index}
                             className='p-2 hover:bg-gray-100 w-[300px] cursor-pointer text-left'
@@ -160,67 +159,6 @@ const Home = () => {
           </div>
         )}
       </div>
-
-      {/* <div className="bg-white relative flex justify-center">
-        <div className="bg-white p-4 absolute top-[-45px] rounded shadow flex flex-col md:flex-row justify-between items-center lg:w-[1170px] w-[90%] px-4 mx-auto">
-          <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 items-center">
-            <div className="flex flex-col w-[292px] space-y-2 md:border-r">
-              <label htmlFor="keywords" className="text-sm font-semibold">
-                Search
-              </label>
-              <input
-                id="keywords"
-                type="text"
-                placeholder="Enter Keywords"
-                className="border-gray-300 border-none outline-none"
-              />
-            </div>
-
-            <div className="flex flex-col w-[180px] space-y-2 md:border-r">
-              <label htmlFor="location" className="text-sm font-semibold">
-                Location
-              </label>
-              <div className="relative py-0">
-                <select
-                  id="location"
-                  className="appearance-none border-gray-300 border-none outline-none py-0 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-                >
-                  <option>New York</option>
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                </select>
-                <IoIosArrowDown className="absolute top-2 right-3 pointer-events-none" />
-              </div>
-            </div>
-
-            <div className="flex flex-col w-[180px] space-y-2 md:border-r">
-              <label htmlFor="location" className="text-sm font-semibold">
-                Location
-              </label>
-              <div className="relative py-0">
-                <select
-                  id="location"
-                  className="appearance-none border-gray-300 border-none outline-none py-0 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-                >
-                  <option>New York</option>
-                  <option>Option 1</option>
-                  <option>Option 2</option>
-                </select>
-                <IoIosArrowDown className="absolute top-2 right-3 pointer-events-none" />
-              </div>
-            </div>
-          </div>
-
-          <button className="flex items-center bg-black text-white px-4 py-2 rounded-lg mt-4 md:mt-0">
-            <BsSearch className="text-white mr-2" />
-            Search
-          </button>
-        </div>
-      </div> */}
-
-      {/* <div className=' w-[90%] lg:w-[1170px] mx-auto py-[120px]'>
-        <Services />
-      </div> */}
 
       <section className='text-center py-8 px-4 bg-white'>
         <h2 className='text-xl md:text-2xl font-bold text-black'>
@@ -282,7 +220,6 @@ const Home = () => {
             </button>
           )}
         </div>
-
         {themeContentObject?.showMap && agency?.google_api_key ? (
           <div className='flex justify-center space-x-4 mt-4 relative'>
             <div className='relative w-[300px] '>
@@ -297,7 +234,7 @@ const Home = () => {
                 <button
                   onClick={() => {
                     if (searchTerm) {
-                      navigate(
+                      navigate.push(
                         `${middleware}filter-listing?search=${encodeURIComponent(
                           searchTerm
                         )}`
@@ -314,7 +251,7 @@ const Home = () => {
                 </button>
               </div>
               {searchTerm && (
-                <ul className='absolute  z-10 w-[320px]  bg-white border border-gray-300 mt-1 rounded-md overflow-auto shadow-lg'>
+                <ul className='absolute  z-10 w-[320px]  bg-white border border-gray-300 mt-1 rounded-md overflow-auto shadow-lg text-black'>
                   {businesses
                     .filter(biz => {
                       const nameMatch = biz.first_name
@@ -330,7 +267,7 @@ const Home = () => {
                     .map((biz, index) => (
                       <li
                         onClick={() =>
-                          navigate(`${middleware}detail-page/${biz.id}`)
+                          navigate.push(`${middleware}detail-page/${biz.slug}`)
                         }
                         key={index}
                         className='p-2 hover:bg-gray-100 w-[300px] cursor-pointer text-left'
@@ -356,7 +293,6 @@ const Home = () => {
           ''
         )}
       </section>
-
       {businesses.length > 0 && (
         <div className='bg-[#F7F7F7]'>
           <div className='w-[90%] lg:w-[1170px] mx-auto py-[120px]'>
@@ -402,8 +338,8 @@ const Home = () => {
       )}
 
       {blogs.length > 0 && (
-        <div className='w-[90%] lg:w-[1170px] mx-auto py-[120px]'>
-          <FromOurBlog blogsData={blogs} />
+        <div className='w-[100%] lg:w-[100%] px-[20%] py-[120px] bg-gray-50'>
+          <FromOurBlog blogsData={blogs} middleware={middleware} />
         </div>
       )}
     </div>

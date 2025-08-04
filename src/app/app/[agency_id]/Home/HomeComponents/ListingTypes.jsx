@@ -2,14 +2,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from 'react';
 import Slider from 'react-slick';
-import sample from '../../assets/Home/sample.svg'
-import { AiOutlineThunderbolt } from "react-icons/ai";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { LuCopyPlus } from "react-icons/lu";
-import { CiHeart } from "react-icons/ci";
-import { CgArrowTopRight } from "react-icons/cg";
-import securityIcon from '../../assets/Home/security-icon.svg'
-
+// import sample from '../../assets/Home/sample.svg'
+// import securityIcon from '../../assets/Home/security-icon.svg'
+import sample from "../../../../assets/Home/sample.svg"
+import securityIcon from "../../../../assets/Home/security-icon.svg"
 
 const listingsData = [
     {

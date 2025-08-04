@@ -68,16 +68,15 @@ const SignUp = () => {
         localforage.setItem("user", { ...LoginRes.data });
         Update(LoginRes.data);
       }
-      navigate(`${middleware}profile`);
+      navigate.push(`${middleware}profile`);
     } else {
       console.log(error, "error");
       toast.error(error?.message || "Error while creating account");
-      navigate(`/register`);
     }
   };
   return (
-    <div className="h-full w-full flex justify-center items-center py-16 bg-white">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+    <div className="h-full w-full flex justify-center items-center py-16">
+      <div className="p-8 rounded-lg shadow-lg w-full max-w-lg">
         <div className="flex flex-col items-center mb-6">
           <img
             alt="Directory logo"

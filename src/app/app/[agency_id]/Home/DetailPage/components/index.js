@@ -1,24 +1,26 @@
+"use client";
 import React from "react";
 import { useState } from "react";
 import { Elements, useStripe } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Swal from "sweetalert2";
-import {useParams } from "react-router-dom";
-import { useAgencyInfo } from "../../../../context/agency";
-import { useUserInfo } from "../../../../context/user";
-import { useAppServices } from "../../../../hook/services";
+import { useAgencyInfo } from "@/app/context/agency";
+import { useUserInfo } from "@/app/context/user";
+import { useAppServices } from "@/app/hook/services";
+import { useParams, useRouter } from "next/navigation";
 
 const SubscriptionModelPopup = ({ product, yearlyPrice,selectedbusiness,setOpenUpgradeModel }) => {
   const [agency] = useAgencyInfo();
   const [user, Update] = useUserInfo();
   const stripePromise = loadStripe(agency?.stripe?.publish_key);
   const AppService = useAppServices();
+  const navigate = useRouter();
   const { agency_id } = useParams();
   let middleware = `/`;
   if (agency_id) {
     middleware = `/app/${agency_id}/`;
   }
-  function AddPaymentMethod({selectedbusiness,product,setOpenUpgradeModel }) {
+  function AddPaymentMethod({ isOpen, onClose,selectedbusiness,product,setOpenUpgradeModel }) {
     const stripe = useStripe();
     const [loading, setLoading] = useState(false);
 
@@ -36,6 +38,7 @@ const SubscriptionModelPopup = ({ product, yearlyPrice,selectedbusiness,setOpenU
       };
       console.log(payload, "payload");
       const { response } = await AppService.subscriptions.account({ payload });
+      console.log(response);
       if (response) {
         if (response.status == "completed") {
           Update(response.data);
@@ -66,7 +69,6 @@ const SubscriptionModelPopup = ({ product, yearlyPrice,selectedbusiness,setOpenU
                   plan_id:product._id,
                   plan_type:"premium"
                 };
-                console.log(payload, "payload");
                 const update_result = await AppService.subscriptions.account({
                   payload,
                 });

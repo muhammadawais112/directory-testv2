@@ -58,12 +58,10 @@ const Jobs = () => {
     }, []);
 
     const handleViewDetails = (job) => {
-
         window.scrollTo({
             top: 0,
             behavior: "smooth",
           });
-
         router.push(`/jobs/job-detail/${job?.slug}`);
     };
 

@@ -1,8 +1,12 @@
 import React from 'react';
 import { IconContext } from 'react-icons';
-import key from '../../assets/Home/key.svg'
-import money from '../../assets/Home/money.svg'
-import timer from '../../assets/Home/timer.svg'
+// import key from '../../assets/Home/key.svg'
+// import money from '../../assets/Home/money.svg'
+// import timer from '../../assets/Home/timer.svg'
+import key from "../../../../assets/Home/key.svg"
+import money from "../../../../assets/Home/money.svg"
+import timer from "../../../../assets/Home/timer.svg"
+
 import { CgArrowTopRight } from "react-icons/cg";
 
 const servicesData = [

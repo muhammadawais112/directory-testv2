@@ -1,10 +1,11 @@
+"use client";
 import React, { useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useUserInfo } from "../../../../context/user";
-import { useAppServices } from "../../../../hook/services";
-import { useAgencyInfo } from "../../../../context/agency";
-import Modal from "../../../../components/popup";
 import { toast } from "react-hot-toast";
+import Modal from "@/app/components/popup";
+import { useUserInfo } from "@/app/context/user";
+import { useAppServices } from "@/app/hook/services";
+import { useAgencyInfo } from "@/app/context/agency";
 
 const AddCard = ({ isOpen, onClose, opensubmodel, product,setOpenUpgradeModel }) => {
   const [user, Update] = useUserInfo();

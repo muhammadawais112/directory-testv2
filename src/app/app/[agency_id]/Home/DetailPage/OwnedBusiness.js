@@ -1,21 +1,25 @@
+"use client";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import businessImage from "../../../assets/Blogs/main.png";
-import { useAgencyInfo } from "../../../context/agency";
-import { useAppServices, useUploadImage } from "../../../hook/services";
-import Modal from "../../../components/popup";
+// import businessImage from "@/app/assets/Blogs/main.png";
 import toast from "react-hot-toast";
-import SubscriptionModelPopup from "../DetailPage/components/index";
-import { Elements } from "@stripe/react-stripe-js";
+import { Elements, useStripe } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { useAgencyInfo } from "@/app/context/agency";
+import { useAppServices, useUploadImage } from "@/app/hook/services";
+import { useParams, useRouter } from "next/navigation";
+import Modal from "@/app/components/popup";
 import AddCard from "./components/AddCard";
+import SubscriptionModelPopup from "./components";
+import Image from "next/image";
+import businessImage from "../../../../assets/Blogs/main.png"
 
 function OwnedBusiness({ user }) {
   const [agency] = useAgencyInfo();
   const uploadImage = useUploadImage();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const Service = useAppServices();
+  const [businesses, setBusinesses] = useState([]);
   const [claimRequests, setClaimRequests] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [openUpgradeModel, setOpenUpgradeModel] = useState(false);
@@ -97,6 +101,7 @@ function OwnedBusiness({ user }) {
         Service.claim_business
           .update({ payload })
           .then((res) => {
+            console.log(res, "res");
             setClaimRequests(
               claimRequests.filter((request) => request._id !== id)
             );
@@ -166,7 +171,7 @@ function OwnedBusiness({ user }) {
       });
   };
   const handleBusinessDetails = (business) => {
-    navigate(`${middleware}detail-page/${business?.business?.slug}`);
+    navigate.push(`${middleware}detail-page/${business?.business?.slug}`);
   };
 
   const FreePlan = async (id) => {
@@ -266,14 +271,16 @@ function OwnedBusiness({ user }) {
           </div>
         ) : (
           <>
-            {claimRequests.map((business, index) => (
-              <div className="bg-white shadow-md rounded-xl">
+            {claimRequests?.map((business, index) => (
+              <div className="bg-white shadow-md rounded-xl" key={index}>
                 <div className="relative">
                   <div>
-                    <img
+                    <Image
                       src={business?.business?.profile_image || businessImage}
                       alt="Profile Image"
                       className="w-full h-[300px] object-cover rounded-t-lg mb-4"
+                      width={500}
+                      height={220}
                     />
                   </div>
                 </div>
@@ -368,7 +375,7 @@ function OwnedBusiness({ user }) {
                   </a>
                   <a
                     onClick={() =>
-                      navigate(`./business/${business?.business_id}`)
+                      navigate.push(`./profile/business/${business?.business_id}`)
                     }
                     style={{
                       background: "#1f2937",

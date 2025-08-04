@@ -1,13 +1,14 @@
+"use client";
+import Loader from "@/app/components/loader";
+import { useAgencyInfo } from "@/app/context/agency";
+import { useUserInfo } from "@/app/context/user";
+import { useAppServices } from "@/app/hook/services";
+import { useParams, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useAgencyInfo } from "../../../context/agency";
-import { useAppServices } from "../../../hook/services";
-import { useUserInfo } from "../../../context/user";
-import Loader from "../../../components/loader";
 
 const AppliedJobs = () => {
   const [agency] = useAgencyInfo();
-  const location = useLocation();
+  const location = useSearchParams();
   const AppService = useAppServices();
   const [applicants, setApplicants] = useState([]);
   const [jobData, setJobData] = useState([]);

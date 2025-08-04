@@ -10,9 +10,11 @@ import { useAgencyInfo } from "@/app/context/agency";
 import { uploadImageToGhl, useAppServices, useUploadImage } from "@/app/hook/services";
 import { useUserInfo } from "@/app/context/user";
 
-function AddNewBusiness() {
+
+
+function AddNewBusiness({targetRoute}) {
     const [agency] = useAgencyInfo();
-    console.log("agencyData",agency)
+    console.log("agencyData", agency)
     const [user, Update] = useUserInfo();
     const Service = useAppServices();
     const [claimData, setClaimData] = useState(null);
@@ -101,8 +103,10 @@ function AddNewBusiness() {
                     text: "Your new business request has been sent successfully. We will review and get back to you soon.",
                 }).then(() => {
                     setTimeout(() => {
-                        navigate(`${middleware}plans`);
+                        
+                        navigate.push(targetRoute);
                     }, 1000);
+
                     // setClaimData(claimResponse.data);
                 });
             } else {
@@ -422,7 +426,7 @@ function AddNewBusiness() {
                         <input type="hidden" name="agency_id" value={agency?._id} />
                         <input type="hidden" name="account_id" value={user?.id} />
                         <input type="hidden" name="request_type" value="new" />
-                        <hr />
+                        <hr className="text-gray-200"/>
                         <div className="flex flex-wrap -mx-3 mb-6 mt-2">
                             <div className="w-full px-3">
                                 <div className="flex items-center">
@@ -442,14 +446,14 @@ function AddNewBusiness() {
                                 </div>
                             </div>
                         </div>
-                        <hr />
+                        <hr className="text-gray-200"/>
                         <div className="flex items-center justify-end mt-4">
                             <button
                                 style={{
                                     background: theme_content?.general?.button_bg || "#EF4444",
                                     color: theme_content?.general?.button_text || "#fff",
                                 }}
-                                className="px-4 py-2 rounded-md text-sm transition"
+                                className="px-4 py-2 rounded-md text-sm cursor-pointer transition"
                                 disable={loading}
                                 type="submit"
                             >

@@ -15,7 +15,7 @@ const FeaturedListing = ({ businesses }) => {
   }
 
   const handleBusinessDetails = (business) => {
-    navigate(`${middleware}detail-page/${business?.slug}`);
+    navigate.push(`${middleware}detail-page/${business?.slug}`);
   };
 
   useEffect(() => {

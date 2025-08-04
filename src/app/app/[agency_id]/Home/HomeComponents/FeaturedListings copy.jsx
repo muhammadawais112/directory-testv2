@@ -11,14 +11,15 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import { LuCopyPlus } from "react-icons/lu";
 import { CiHeart } from "react-icons/ci";
 import { CgArrowTopRight } from "react-icons/cg";
+
 import { useEffect } from "react";
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { SlUserUnfollow } from "react-icons/sl";
 import Image from "next/image";
-import { useUserInfo } from "@/app/context/user";
 import { useAgencyInfo } from "@/app/context/agency";
 import { useAppServices } from "@/app/hook/services";
+import { useUserInfo } from "@/app/context/user";
 
 const FeaturedListings = ({ businesses }) => {
   const [agency] = useAgencyInfo();
@@ -215,7 +216,7 @@ const FeaturedListings = ({ businesses }) => {
 
           <div className="md:flex items-center justify-between">
             <span
-              onClick={() => navigate(`${middleware}featured-listing`)}
+              onClick={() => navigate.push(`${middleware}featured-listing`)}
               className=" md:mt-0 mt-2 flex items-center space-x-2 font-semibold cursor-pointer text-black"
             >
               See All Featured Listings
@@ -286,7 +287,7 @@ const FeaturedListings = ({ businesses }) => {
                       {business?.business_tags?.map((tag, index) => (
                         <h3
                           key={index}
-                          className="bg-white w-fit px-[10px] my-2 py-1 rounded-md border font-bold"
+                          className="bg-white w-fit px-[10px] my-2 py-1 rounded-md border border-gray-300 font-bold text-black"
                         >
                           {tag?.label?.length > 25
                             ? `${tag.label.slice(0, 25)}...`
@@ -298,7 +299,7 @@ const FeaturedListings = ({ businesses }) => {
 
                   <div className=" absolute bottom-2 w-full px-4 pt-2">
                     <div className="border-t  pt-2 flex justify-end">
-                      <span className="w-8 h-8 flex justify-center items-center cursor-pointer">
+                      <span className="w-8 h-8 flex justify-center items-center cursor-pointer text-black">
                         <FaExternalLinkAlt />
                       </span>
 
@@ -313,7 +314,7 @@ const FeaturedListings = ({ businesses }) => {
                               unFollowFunction(matched._id);
                             }
                           }}
-                          className="w-8 h-8 flex justify-center items-center cursor-pointer"
+                          className="w-8 h-8 flex justify-center items-center cursor-pointer text-black"
                         >
                           <SlUserUnfollow />
                         </span>

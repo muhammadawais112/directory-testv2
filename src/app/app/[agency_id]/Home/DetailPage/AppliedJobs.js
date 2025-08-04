@@ -1,15 +1,14 @@
-"use client"
+"use client";
+import Loader from "@/app/components/loader";
+import { useAgencyInfo } from "@/app/context/agency";
+import { useUserInfo } from "@/app/context/user";
+import { useAppServices } from "@/app/hook/services";
+import { useParams, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import { useAgencyInfo } from "../../../context/agency";
-import { useAppServices } from "../../../hook/services";
-import { useUserInfo } from "../../../context/user";
-import Loader from "../../../components/loader";
-import Image from "next/image";
 
 const AppliedJobs = () => {
   const [agency] = useAgencyInfo();
-  const location = useLocation();
+  const location = useSearchParams();
   const AppService = useAppServices();
   const [applicants, setApplicants] = useState([]);
   const [jobData, setJobData] = useState([]);
@@ -41,6 +40,7 @@ const AppliedJobs = () => {
   useEffect(() => {
     viewApplicants();
   }, []);
+  console.log(jobData, "jobData")
   return (
     <div className="">
       {loader ? (
@@ -70,7 +70,7 @@ const AppliedJobs = () => {
                   {/* Job Image */}
                   <div className="relative h-48">
                     {data?.job_id?.image ? (
-                      <Image
+                      <img
                         src={data?.job_id.image}
                         alt={data?.job_id.title || "Job Image"}
                         className="w-full h-full object-cover rounded-t-lg"
@@ -149,7 +149,7 @@ const AppliedJobs = () => {
               ))
             ) : (
               <div className="col-span-full flex flex-col items-center justify-center py-12">
-                <Image
+                <img
                   src="/empty-state.svg" // Add an illustration for empty state
                   alt="No applied jobs found"
                   className="w-48 h-48 mb-6"
@@ -158,7 +158,7 @@ const AppliedJobs = () => {
                   No Applied Jobs Found
                 </p>
                 <p className="text-gray-500 text-center max-w-md">
-                  You havent applied to any jobs yet. Start exploring
+                  You haven't applied to any jobs yet. Start exploring
                   opportunities and apply to your dream job!
                 </p>
               </div>

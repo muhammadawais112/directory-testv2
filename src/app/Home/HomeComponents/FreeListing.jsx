@@ -274,7 +274,7 @@ const FreeListing = ({ businesses }) => {
                 </div>
 
                 <div className=" absolute bottom-2 w-full px-4 pt-2">
-                  <div className="border-t  pt-2 flex justify-end">
+                  <div className="border-t border-gray-200 pt-2 flex justify-end">
                     <span className="w-8 h-8 flex justify-center items-center cursor-pointer text-black">
                       <FaExternalLinkAlt />
                     </span>
@@ -290,7 +290,7 @@ const FreeListing = ({ businesses }) => {
                             unFollowFunction(matched._id);
                           }
                         }}
-                        className="w-8 h-8 flex justify-center items-center cursor-pointer"
+                        className="w-8 h-8 flex justify-center items-center cursor-pointer text-black"
                       >
                         <SlUserUnfollow />
                       </span>

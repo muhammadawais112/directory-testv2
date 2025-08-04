@@ -1,8 +1,11 @@
-
+import Footer from "component/Footer";
+import Header from "component/Header";
 import Loader from "component/loader";
+import Topnav from "component/Topnav";
 import { useAgencyInfo } from "context/agency";
 import { useUserInfo } from "context/user";
 import { useAppServices, useUploadImage } from "hook/services";
+import BlogList from "pages/component/blogList";
 import Modal from "../../component/popup";
 import ReviewsComponent from "pages/component/reviews";
 import TeamComponent from "pages/component/team";
@@ -15,7 +18,6 @@ import profile from "../../../assets/images/profile.png";
 import BusinessBlogs from "./BusinessBlogs";
 import BusinessJobs from "./BusinessJobs";
 import BusinessEvents from "./BusinessEvents";
-import Image from "next/image";
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ const DetailPage = () => {
   const [claimData, setClaimData] = useState({});
   const theme_content = agency?.theme_id?.theme_data;
   const socialLinks = theme_content?.general;
+  const themeContentObject = theme_content?.content || "black";
   const [blogsData, setBlogsData] = useState([]);
   const [eventsData, setEventsData] = useState([]);
   const [jobsData, setJobsData] = useState([]);
@@ -96,6 +99,7 @@ const DetailPage = () => {
       query: `business_id=${id}&account_id=${user?.id}&agency_id=${agency?._id}`,
     });
     if (response) {
+      console.log(response, "response claim");
       setClaimData(response?.data[0]);
     }
   };
@@ -158,6 +162,7 @@ const DetailPage = () => {
     for (var [key, value] of formData.entries()) {
       payload[key] = value;
     }
+    console.log(payload.proof.name, "proof");
 
     if (payload.proof.name != "") {
       // upload proof image
@@ -220,7 +225,7 @@ const DetailPage = () => {
               <div className="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0">
                 {/* Business Info Section */}
                 <div className="flex flex-col md:flex-row items-center gap-4">
-                  <Image
+                  <img
                     className="w-20 h-20 md:w-24 md:h-24 object-cover"
                     style={{ borderRadius: "50%" }}
                     src={business?.profile_image || profile}
@@ -294,7 +299,7 @@ const DetailPage = () => {
                   </span>
                 ))}
               </div>
-              <Image
+              <img
                 className="w-full mb-4 object-cover"
                 src={business?.cover_image || main_image}
                 alt="Nick Ponte Marketing Banner"
@@ -306,7 +311,7 @@ const DetailPage = () => {
                     {business?.attachments?.length
                       ? business.attachments.map((attachment, index) => (
                           <div key={index} className="mb-4">
-                            <Image
+                            <img
                               src={attachment || main_image}
                               alt={`Attachment ${index + 1}`}
                               width={300}
@@ -384,7 +389,7 @@ const DetailPage = () => {
                     About {business?.first_name}
                   </h2>
                   <div className="flex items-center space-x-2 mb-4">
-                    <Image
+                    <img
                       className="w-12 h-12 object-cover rounded-full"
                       src={business?.profile_image || profile}
                       alt="Nick Ponte Marketing Logo"
@@ -637,7 +642,7 @@ const DetailPage = () => {
                     {newsFeedsData?.length
                       ? newsFeedsData?.map((news, index) => (
                           <div key={index}>
-                            <Image
+                            <img
                               className="w-full mb-4 h-48 object-cover"
                               src={news.image || "https://placehold.co/500x300"}
                               alt="Nick Ponte Marketing Ad"

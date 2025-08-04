@@ -1,12 +1,14 @@
+"use client";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import businessImage from "../../../assets/Blogs/main.png";
-import { useAgencyInfo } from "../../../context/agency";
-import { useAppServices } from "../../../hook/services";
+import businessImage from "@/app/assets/Blogs/main.png";
+import { useParams, useRouter } from "next/navigation";
+import { useAppServices } from "@/app/hook/services";
+import { useAgencyInfo } from "@/app/context/agency";
 import Image from "next/image";
+
 function FollowedBusiness({ user }) {
   const [agency] = useAgencyInfo();
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const Service = useAppServices();
   const { agency_id } = useParams();
 
@@ -23,12 +25,13 @@ function FollowedBusiness({ user }) {
         query: `account_id=${user.id}`,
       })
       .then((res) => {
+        console.log(res, "res");
         setdata(res?.response?.data);
       });
   }, []);
 
   const handleBusinessDetails = (slug) => {
-    navigate(`${middleware}detail-page/${slug}`);
+    navigate.push(`${middleware}detail-page/${slug}`);
   };
 
   return (
@@ -39,12 +42,14 @@ function FollowedBusiness({ user }) {
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
-        {data.map((business) => (
+        {data.map((business, index) => (
           <div className="bg-white shadow-md rounded-xl">
             <Image
               src={business?.business_ref_id?.profile_image || businessImage}
               alt="Featured Listing 1"
               className="w-full mb-2 rounded-t-xl h-[300px] object-cover"
+              width={500}
+              height={220}
             />
 
             <h2 className="text-xl font-semibold text-gray-800 ml-4">

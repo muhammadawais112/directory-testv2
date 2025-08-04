@@ -23,7 +23,7 @@ const JobDetail = () => {
   const [user] = useUserInfo();
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(true);
-  const router = useRouter();
+  const navigate = useRouter();
   const theme_content = agency?.theme_id?.theme_data;
   const { agency_id, slug } = useParams()
   let middleware = `/`
@@ -31,17 +31,13 @@ const JobDetail = () => {
 
     middleware = `/app/${agency_id}/`
   }
-
-  const [showAll, setShowAll] = useState(false);
   const [coverLetter, setCoverLetter] = useState("");
   const [job, setJob] = useState({});
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [jobData, setJobData] = useState([]);
   const [jobsData, setJobsData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3; // Show 3 items per page
-
-  // Calculate pagination
+  const itemsPerPage = 3;
   const totalItems = jobsData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -108,7 +104,7 @@ const JobDetail = () => {
       behavior: "smooth",
     });
 
-    navigate(`${middleware}job-detail/${job?.slug}`);
+    navigate.push(`${middleware}jobs/job-detail/${job?.slug}`);
   };
 
   const handleApplyForJob = async (job) => {

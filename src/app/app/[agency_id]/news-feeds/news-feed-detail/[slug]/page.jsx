@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react'
-import {useRouter} from 'next/navigation';
+import { useRouter } from 'next/navigation';
 // import { useNavigate, useParams } from 'react-router';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
@@ -21,16 +21,16 @@ const NewsFeedDetail = () => {
   const Service = useAppServices();
   const [agency] = useAgencyInfo();
   const [loader, setLoader] = useState(true);
-  const router = useRouter();
+  const navigate = useRouter();
   const [newsFeedsData, setNewsFeedsData] = useState([]);
-  const [news,setNews] = useState({});
+  const [news, setNews] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3; // Show 6 items per page
   const totalItems = newsFeedsData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedBlogs = newsFeedsData.slice(startIndex, startIndex + itemsPerPage);
-  const { agency_id,slug } = useParams()
+  const { agency_id, slug } = useParams()
   let middleware = `/`
   if (agency_id) {
     middleware = `/app/${agency_id}/`
@@ -40,7 +40,7 @@ const NewsFeedDetail = () => {
       query: `agency_id=${agency._id}&slug=${slug}`,
     });
     if (response) {
-        setNews(response?.data)
+      setNews(response?.data)
     }
   };
 
@@ -70,7 +70,7 @@ const NewsFeedDetail = () => {
       behavior: "smooth",
     });
 
-    navigate(`${middleware}news-feed-detail/${news?.slug}`);
+    navigate.push(`${middleware}news-feeds/news-feed-detail/${news?.slug}`);
   }; // It should log the API key to the console
 
   const relatedNews = newsFeedsData.filter(
@@ -110,7 +110,7 @@ const NewsFeedDetail = () => {
                       src={news?.image || sample}
                       alt={news?.title}
                       className="w-full h-[260px] object-cover"
-                              width={500}
+                      width={500}
 
                     />
                     {news?.date && (

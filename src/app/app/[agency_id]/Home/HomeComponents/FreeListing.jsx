@@ -2,30 +2,27 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./home.css";
 import React, { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Slider from "react-slick";
 import businessImage from "@/app/assets/images/profile.png";
 import { FaExternalLinkAlt, FaHeart } from "react-icons/fa";
 import { LuCopyPlus } from "react-icons/lu";
 import { CiHeart } from "react-icons/ci";
 import { CgArrowTopRight } from "react-icons/cg";
-import { useAgencyInfo } from "../../context/agency";
-import { useAppServices } from "../../hook/services";
-import { useUserInfo } from "../../context/user";
+
 import { SlUserUnfollow } from "react-icons/sl";
 import Image from "next/image";
+import { useAgencyInfo } from "@/app/context/agency";
+import { useAppServices } from "@/app/hook/services";
+import { useUserInfo } from "@/app/context/user";
 
 const FreeListing = ({ businesses }) => {
   const navigate = useRouter();
   const [agency] = useAgencyInfo();
   const Service = useAppServices();
-  const { agency_id } = useParams();
   const [user, , , planData] = useUserInfo();
 
   let middleware = `/`;
-  if (agency_id) {
-    middleware = `/app/${agency_id}/`;
-  }
 
   const sliderData =
     businesses?.filter((business) => business?.plan_type === "free") || [];
@@ -82,7 +79,7 @@ const FreeListing = ({ businesses }) => {
 
   const followFunction = async (business) => {
     if (!user?._id) {
-      navigate("/login");
+      navigate.push("/login");
       return;
     }
 
@@ -150,7 +147,7 @@ const FreeListing = ({ businesses }) => {
 
   const likeFunction = async (business) => {
     if (!user?._id) {
-      navigate("/login");
+      navigate.push("/login");
       return;
     }
 
@@ -195,7 +192,7 @@ const FreeListing = ({ businesses }) => {
           {/* <p className='text-sm'>Aliquam lacinia diam quis lacus euismod</p> */}
 
           <span
-            onClick={() => navigate(`${middleware}listing`)}
+            onClick={() => navigate.push(`${middleware}listing`)}
             className=" md:mt-0 mt-2 flex items-center space-x-2 font-semibold cursor-pointer text-black"
           >
             See All Listings
@@ -210,7 +207,7 @@ const FreeListing = ({ businesses }) => {
           ?.map((business) => (
             <div key={business.id}>
               <div
-                onClick={() => navigate(`/detail-page/${business.slug}`)}
+                onClick={() => navigate.push(`${middleware}detail-page/${business.slug}`)}
                 className=" cursor-pointer bg-white relative rounded-[12px] border border-[#e6e8ed] overflow-hidden h-[390px] md:h-[390px] w-[300px] md:w-[330px] mx-auto"
               >
                 <div className="relative">
@@ -226,7 +223,7 @@ const FreeListing = ({ businesses }) => {
                 <div
                   className="p-4 cursor-pointer"
                   onClick={() =>
-                    navigate(`${middleware}detail-page/${business.id}`)
+                    navigate.push(`${middleware}detail-page/${business.id}`)
                   }
                 >
                   <h2 className="text-lg text-black">
@@ -269,7 +266,7 @@ const FreeListing = ({ businesses }) => {
                     {business?.business_tags?.map((tag, index) => (
                       <h3
                         key={index}
-                        className="bg-white w-fit px-[10px] my-2 py-1 rounded-md border font-bold"
+                        className="bg-white w-fit px-[10px] my-2 py-1 rounded-md border border-gray-300 font-bold text-black"
                       >
                         {tag?.label}
                       </h3>
@@ -279,7 +276,7 @@ const FreeListing = ({ businesses }) => {
 
                 <div className=" absolute bottom-2 w-full px-4 pt-2">
                   <div className="border-t  pt-2 flex justify-end">
-                    <span className="w-8 h-8 flex justify-center items-center cursor-pointer">
+                    <span className="w-8 h-8 flex justify-center items-center cursor-pointer text-black">
                       <FaExternalLinkAlt />
                     </span>
 
@@ -294,7 +291,7 @@ const FreeListing = ({ businesses }) => {
                             unFollowFunction(matched._id);
                           }
                         }}
-                        className="w-8 h-8 flex justify-center items-center cursor-pointer"
+                        className="w-8 h-8 flex justify-center items-center cursor-pointer text-black"
                       >
                         <SlUserUnfollow />
                       </span>

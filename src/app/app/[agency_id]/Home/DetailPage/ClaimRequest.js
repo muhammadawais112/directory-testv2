@@ -1,10 +1,12 @@
+"use client";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { useAgencyInfo } from "../../../context/agency";
-import { useAppServices, useUploadImage } from "../../../hook/services";
-import Modal from "../../../components/popup";
-import businessImage from "../../../assets/Blogs/main.png";
+import businessImage from "@/app/assets/Blogs/main.png";
+import Modal from "@/app/components/popup";
+import { useAppServices, useUploadImage } from "@/app/hook/services";
+import { useAgencyInfo } from "@/app/context/agency";
 import Image from "next/image";
+
 function ClaimRequest({ user }) {
   const [agency] = useAgencyInfo();
   const uploadImage = useUploadImage();
@@ -42,6 +44,7 @@ function ClaimRequest({ user }) {
         Service.claim_business
           .update({ payload })
           .then((res) => {
+            console.log(res, "res");
             setClaimRequests(
               claimRequests.filter((request) => request._id !== id)
             );
@@ -50,6 +53,7 @@ function ClaimRequest({ user }) {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
           })
           .catch((err) => {
+            console.log(err, "err");
           });
       }
     });
@@ -83,6 +87,7 @@ function ClaimRequest({ user }) {
       if (response && response.data) {
         payload.proof = response.data; // Set the image URL/path here
       } else {
+        console.error("Failed to upload proof image.");
         return;
       }
     } else {
@@ -110,6 +115,7 @@ function ClaimRequest({ user }) {
       });
     }
   } catch (err) {
+    console.error("Error processing claim form:", err);
     Swal.fire({
       icon: "error",
       title: "Something went wrong!",
@@ -118,6 +124,7 @@ function ClaimRequest({ user }) {
   }
 };
 
+  console.log(claimRequests, "claimRequests");
   return (
     <div className="p-6">
       <div className="flex items-center justify-between">
@@ -137,6 +144,8 @@ function ClaimRequest({ user }) {
                   src={request?.profile_image || request?.business_ref_id?.profile_image || businessImage}
                   alt="Profile Image"
                   className="w-full h-[300px] object-cover rounded-lg mb-4"
+                  width={500}
+                  height={220}
                 />
               </div>
 

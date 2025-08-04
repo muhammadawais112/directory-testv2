@@ -1,9 +1,9 @@
 import React from 'react';
-import WhyChooseUsImg from '../../assets/Home/why-choose.svg';
+import WhyChooseUsImg from '../../../../assets/Home/why-choose.svg';
 import { IoMdHome } from "react-icons/io";
-import securityIcon from '../../assets/Home/security-icon.svg';
-import keywordingIcon from '../../assets/Home/keywording-icon.svg';
-import investmentIcon from '../../assets/Home/investment-icon.svg';
+import securityIcon from '../../../../assets/Home/security-icon.svg';
+import keywordingIcon from '../../../../assets/Home/keywording-icon.svg';
+import investmentIcon from '../../../../assets/Home/investment-icon.svg';
 
 const reasons = [
   {

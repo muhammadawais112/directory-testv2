@@ -3,13 +3,16 @@ import "slick-carousel/slick/slick-theme.css";
 import React, { useState } from "react";
 import { CgArrowTopRight } from "react-icons/cg";
 import sample from "../../assets/Home/sample.svg";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Pagination from "@/app/components/Pagination/Pagination";
 import Image from "next/image";
 
 const FromOurBlog = ({ blogsData = [], middleware }) => {
   const navigate = useRouter();
   console.log("middleware", middleware);
+      const pathname = usePathname();
+  const router = useRouter();
+  const [isNavigating, setIsNavigating] = useState(false);
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,19 +28,27 @@ const FromOurBlog = ({ blogsData = [], middleware }) => {
     setCurrentPage(page);
   };
 
+
+
+
+
   const handleViewDetails = (blog) => {
-    window.scrollTo({
+     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-    const NavRoute =
-      middleware == "/"
-        ? `blogs/blogs-detail/${blog?.slug}`
+    const targetPath =
+      middleware === "/"
+        ? `/blogs/blogs-detail/${blog?.slug}`
         : `${middleware}/blogs/blogs-detail/${blog?.slug}`;
 
-    navigate.push(`${NavRoute}`);
-  };
+    if (pathname === targetPath || isNavigating) return;
 
+    setIsNavigating(true);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    router.push(targetPath);
+  };
   return (
     <div>
       <div className="flex items-center justify-between pb-[42px]">
