@@ -6,7 +6,7 @@ import LayoutWrapper from "./(components)/LayoutWrapper";
 
 
 export const metadata = {
-  title: "Smart Directory",
+  title: "Smart ",
   description: "AI-powered business directory with events, services and more.",
 };
 
