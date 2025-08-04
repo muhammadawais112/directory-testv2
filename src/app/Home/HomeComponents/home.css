@@ -1,0 +1,12 @@
+.scrollable-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.scrollable-container::-webkit-scrollbar {
+    display: none;
+}

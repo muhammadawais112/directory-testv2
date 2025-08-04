@@ -1,0 +1,53 @@
+{
+  "name": "directory-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "build:dev": "cross-env REACT_APP_ENV=development next build && cp -r .next .next-dev",
+    "build:prod": "cross-env REACT_APP_ENV=production next build && cp -r .next .next-prod",
+    "build:beta": "cross-env REACT_APP_ENV=beta next build && cp -r .next .next-beta"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.6",
+    "@stripe/react-stripe-js": "^3.3.0",
+    "@stripe/stripe-js": "^5.9.2",
+    "axios": "^1.8.1",
+    "country-state-city": "^3.2.1",
+    "libphonenumber-js": "^1.12.9",
+    "localforage": "^1.10.0",
+    "next": "15.4.5",
+    "quill": "^2.0.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-helmet": "^6.1.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-image-gallery": "^1.4.0",
+    "react-phone-number-input": "^3.4.12",
+    "react-router": "^7.2.0",
+    "react-router-dom": "^7.2.0",
+    "react-select": "^5.10.0",
+    "react-slick": "^0.30.3",
+    "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.17.2",
+    "swiper": "^11.2.4",
+    "theme2": "file:",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "cross-env": "^10.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.5",
+    "tailwindcss": "^4"
+  }
+}
